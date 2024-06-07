@@ -6,7 +6,8 @@ defmodule FoxBank.Users.User do
 
   alias Ecto.Changeset
 
-  @required_params [:name, :password, :email, :cep]
+  @required_create_params [:name, :password, :email, :cep]
+  @required_update_params [:name, :email, :cep]
 
   schema "tb_users" do
     field :name, :string
@@ -18,10 +19,20 @@ defmodule FoxBank.Users.User do
     timestamps()
   end
 
-  def changeset(user \\ %__MODULE__{}, params) do
+  def changeset(params) do
+    %__MODULE__{}
+    |> cast(params, @required_create_params)
+    |> validate_required(@required_create_params)
+    |> validate_length(:name, min: 3, max: 124)
+    |> validate_email(:email)
+    |> validate_length(:cep, is: 8)
+    |> add_password_hash()
+  end
+
+  def changeset(user, params) do
     user
-    |> cast(params, @required_params)
-    |> validate_required(@required_params)
+    |> cast(params, @required_create_params)
+    |> validate_required(@required_update_params)
     |> validate_length(:name, min: 3, max: 124)
     |> validate_email(:email)
     |> validate_length(:cep, is: 8)
