@@ -1,4 +1,4 @@
-defmodule FoxBank.User do
+defmodule FoxBank.Users do
   alias FoxBank.Users.Get
   alias FoxBank.Users.Create
 

@@ -1,6 +1,4 @@
 defmodule FoxBankWeb.Router do
-  alias FoxBankWeb.UsersController
-
   use FoxBankWeb, :router
 
   pipeline :api do
@@ -12,7 +10,7 @@ defmodule FoxBankWeb.Router do
 
     get "/", WelcomeController, :index
 
-    resources "/users", UsersController, only: [:create, :update, :delete, :show]
+    resources "/users", FoxBankWeb.UsersController, only: [:create, :update, :delete, :show]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
