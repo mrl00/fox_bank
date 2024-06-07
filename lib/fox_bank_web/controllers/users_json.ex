@@ -11,6 +11,7 @@ defmodule FoxBankWeb.UsersJSON do
   def get(%{user: user}), do: %{data: data(user)}
 
   def update(%{user: user}), do: %{message: "User updated", data: data(user)}
+  def delete(%{user: user}), do: %{message: "User deleted", data: data(user)}
 
   def data(%User{} = user) do
     %{
