@@ -10,7 +10,7 @@ defmodule FoxBankWeb.Router do
 
     get "/", WelcomeController, :index
 
-    resources "/users", FoxBankWeb.UsersController, only: [:create, :update, :delete, :show]
+    resources "/users", UsersController, only: [:create, :update, :show]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
